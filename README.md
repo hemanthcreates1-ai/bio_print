@@ -1,95 +1,126 @@
-BioPrint: CNN-Based Fingerprint Image Classification for Eight Blood-Group Labels
 
-📌 Project Overview
+# Fingerprint-Based Blood Group Detection
 
-BioPrint is a deep learning-based experimental project that uses Convolutional Neural Networks (CNNs) to classify fingerprint images into eight blood-group labels: A+, A-, B+, B-, AB+, AB-, O+, and O-.
+This repository contains code, datasets, and results related to fingerprint-based blood group detection. The project explores using various machine learning models (ResNet, VGG16, AlexNet, and LeNet) to classify blood groups based on fingerprint images. 
 
-The project evaluates two CNN architectures: a baseline CNN and an improved custom CNN. It explores fingerprint image preprocessing, model training, classification, Test-Time Augmentation (TTA), and performance evaluation.
+The project is organized into various folders that store datasets, models, performance metrics, and visualization graphs.
 
-A Streamlit-based web application is also developed to allow users to upload fingerprint images and view the model's predicted class, classification score, and class-wise results.
+## Table of Contents
 
-🎯 Objectives
+- [Folder Structure](#folder-structure)
+- [Getting Started](#getting-started)
+- [Dataset](#dataset)
+- [Models](#models)
+- [Results](#results)
+- [Sample Dataset](#sample-dataset)
+- [Usage](#usage)
 
-- Develop a CNN-based fingerprint image classification system.
-- Compare the performance of baseline and improved CNN models.
-- Apply image preprocessing techniques for consistent model input.
-- Evaluate the impact of Test-Time Augmentation (TTA).
-- Build an interactive web interface for image upload and prediction.
-- Analyse model performance using standard classification metrics.
+## Folder Structure
 
-⚙️ Key Features
+The main directories are organized as follows:
 
-- Eight-Class Classification: Classifies fingerprint images into eight supplied blood-group labels.
-- Image Preprocessing: Resizes images to 128 × 128 pixels and converts them to grayscale.
-- Custom CNN Architecture: Implements and evaluates an improved CNN alongside a baseline model.
-- Test-Time Augmentation: Averages predictions from five image views: original, horizontal flip, and rotations of +10°, -10°, and +5°.
-- Performance Evaluation: Uses accuracy, balanced accuracy, precision, recall, F1-score, macro-F1, and confusion matrix.
-- Duplicate Image Audit: Uses SHA-256 hashing to identify exact duplicate images and examine their effect on validation results.
-- Interactive Web Application: Provides image upload, preview, prediction scores, and visual results through Streamlit.
+```plaintext
+Fingerprint-Based-Blood-Group-Detection/
+├── code/
+│   ├── resnet/          # ResNet model code and files
+│   ├── vgg16/           # VGG16 model code and files
+│   ├── alexnet/         # AlexNet model code and files
+│   └── lenet/           # LeNet model code and files
+├── dataset/
+│   └── dataset_blood_group/  # Main dataset with folders for each blood group type (A+, B-, etc.)
+├── graphs/              # Accuracy, validation accuracy, loss graphs for each model
+├── performance_metrix/  # Comparison performance metrics bar graphs
+├── sample dataset/      # Sample dataset images
+└── test/                # Testing images
+```
 
-🧠 Model Architecture and Workflow
+### Folder Details
 
-1. Dataset Collection: Loads fingerprint images from the Kaggle Fingerprint Blood Group Classification Dataset.
-2. Image Preprocessing: Resizes images to 128 × 128 and converts them into grayscale.
-3. CNN Model Development: Builds and trains baseline and improved CNN architectures using TensorFlow and Keras.
-4. Model Training: Trains the models and monitors validation loss to restore the best model weights.
-5. Image Classification: Predicts one of the eight supplied labels using an eight-class Softmax output layer.
-6. Test-Time Augmentation: Optionally averages predictions across five transformed image views.
-7. Model Evaluation: Compares model performance using multiple classification metrics.
-8. Web Application: Integrates the trained model into a Streamlit application for interactive predictions.
+- **code/**: Contains subfolders for each model (ResNet, VGG16, AlexNet, LeNet), with Jupyter notebooks files for training and evaluation.
+- **dataset/**: Contains the main dataset with images of fingerprints categorized by blood group types (A+, A-, B+, B-, AB+, AB-, O+, O-).
+- **graphs/**: Stores accuracy, validation accuracy, loss, and validation loss graphs for each model.
+- **performance_metrix/**: Contains bar graphs comparing the performance metrics across different models.
+- **sample dataset/**: Includes a sample fingerprint image to preview the dataset.
+- **test/**: Placeholder for any testing or additional data as needed.
 
-📊 Dataset Information
+## Getting Started
 
-- Dataset: Fingerprint Blood Group Classification Dataset
-- Source: Kaggle
-- Total Images: 6,000
-- Training Images: 4,803
-- Validation Images: 1,197
-- Image Size: 128 × 128 pixels
-- Image Format: Grayscale
-- Number of Classes: 8
+### Prerequisites
 
-📈 Experimental Results
+- Python 3.8 or later
+- Jupyter Notebook
+- PyTorch
+- Additional libraries listed in `requirements.txt`
 
-The improved CNN achieved the following results on the validation dataset:
+To install required libraries, run:
 
-Evaluation Metric| Improved CNN
-Accuracy| 86.38%
-Balanced Accuracy| 86.21%
-Macro-F1 Score| 0.8654
+```bash
+pip install -r requirements.txt
+```
 
-Test-Time Augmentation Results
+### Cloning the Repository
 
-With five-view Test-Time Augmentation, the improved CNN achieved:
+```bash
+git clone https://github.com/yourusername/Fingerprint-Based-Blood-Group-Detection.git
+cd Fingerprint-Based-Blood-Group-Detection
+```
 
-Evaluation Metric| Improved CNN + TTA
-Accuracy| 87.55%
-Balanced Accuracy| 87.39%
-Macro-F1 Score| 0.8763
+## Dataset
 
-These results show the performance observed on the project's validation split.
+The dataset contains fingerprint images organized into folders by blood group type. There are approximately 6,000–7,000 images spread across the eight blood group categories.
 
-🛠️ Technologies Used
+- Each subfolder within `dataset/datasetbloodgroup/` represents a blood group and contains fingerprint images labeled accordingly.
+  
+Ensure that you have sufficient storage space before downloading or expanding the dataset.
 
-- Programming Language: Python 3.12
-- Deep Learning: TensorFlow, Keras
-- Model Architecture: Convolutional Neural Networks (CNN)
-- Numerical Computing: NumPy
-- Data Handling: pandas
-- Image Processing: Pillow (PIL)
-- Model Evaluation: scikit-learn
-- Data Visualization: Matplotlib
-- Web Application: Streamlit
-- Data Integrity: SHA-256 Hashing
+## Models
 
-⚠️ Important Disclaimer
+This project explores the following CNN architectures:
 
-BioPrint is an experimental academic project that evaluates how CNN models classify fingerprint images against the labels supplied in a public dataset.
+- **ResNet**
+- **VGG16**
+- **AlexNet**
+- **LeNet**
 
-The results do not establish a scientifically validated relationship between fingerprint patterns and blood groups. The model is not medically validated and must not be used for blood-group identification, diagnosis, treatment, or any medical decision. Its prediction scores are uncalibrated model outputs, not clinical probabilities.
+Each model has a dedicated folder under `code/`, with:
+- A Jupyter notebook (`.ipynb`) that contains code for training and testing.
 
-🎓 Project Type
+## Results
 
-Academic Major Project – Bachelor of Technology (B.Tech), Computer Science and Engineering.
+Performance metrics and training graphs are stored in separate folders for easy access and visualization.
 
-BioPrint demonstrates the application of deep learning, image processing, CNN architecture evaluation, and web application development in an experimental image-classification task.
+- **graphs/**: Includes accuracy, validation accuracy, loss, and validation loss plots for each model, which help visualize the model's performance over time.
+- **performance_metrix/**: Contains bar graphs comparing the performance of different models.
+
+## Sample Dataset
+
+The `sample dataset/` folder includes a sample fingerprint image to give users an idea of the dataset's format.
+
+## Usage
+
+1. **Dataset Preparation**:
+   Ensure that the `dataset/` folder is populated with the required fingerprint images.
+
+2. **Running the Models**:
+   Navigate to the respective model folder in `code/`, open the Jupyter notebook, and run it step-by-step. Each notebook is designed to:
+   - Load the dataset
+   - Train the model on the training dataset
+   - Evaluate the model on the test dataset
+
+3. **Viewing Results**:
+   After training, check the `graphs/` and `performance_metrix/` folders for visualizations of the training process and model comparisons.
+
+4. **Testing on Sample Data**:
+   You can test the model using images from the `sample dataset/` or by adding additional test images to the `test/` folder.
+
+## Contributing
+
+Feel free to fork this repository, make improvements, and submit a pull request. Contributions to improve model performance, add additional blood group types, or optimize the codebase are welcome.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+## Acknowledgments
+
+Special thanks to the authors of the research paper that served as the foundation for this work. For details on the methodology and findings, refer to the paper included in this repository.

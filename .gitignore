@@ -1,0 +1,5 @@
+
+# Local environments and notebook checkpoints
+.venv/
+.ipynb_checkpoints/
+
